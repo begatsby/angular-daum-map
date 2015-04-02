@@ -33,6 +33,12 @@
             $log.error('angular-daum-maps: could not find a valid center property');
             return;
           }
+
+          if (scope.center.lat && scope.center.lng) {
+            scope.center.latitude = scope.center.lat;
+            scope.center.longitude = scope.center.lng;
+          }
+
           el = angular.element(element).find('div')[1];
           map = new daum.maps.Map(el, {
             center: new daum.maps.LatLng(scope.center.latitude, scope.center.longitude),
