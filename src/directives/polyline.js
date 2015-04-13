@@ -20,6 +20,10 @@
         link: function (scope, element, attrs, mapCtrl) {
           var path = [];
           angular.forEach(scope.path, function (position) {
+            if (position.lat && position.lng) {
+              position.latitude = position.lat;
+              position.longitude = position.lng;
+            }
             path.push(new daum.maps.LatLng(position.latitude, position.longitude));
           });
           var polyline = new daum.maps.Polyline({

@@ -13,6 +13,10 @@
           var label = new daum.maps.AbstractOverlay();
           var content;
           var position = markerCtrl.getMarkerPosition();
+          if (position.lat && position.lng) {
+            position.latitude = position.lat;
+            position.longitude = position.lng;
+          }
           var panel, el;
 
           transcludeFn(scope, function (cloned) {

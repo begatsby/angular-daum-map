@@ -17,6 +17,10 @@
         replace: true,
         template: '<span class="angular-daum-map-marker" ng-transclude></span>',
         link: function (scope, element, attrs, mapCtrl) {
+          if (scope.position.lat && scope.position.lng) {
+            scope.position.latitude = scope.position.lat;
+            scope.position.longitude = scope.position.lng;
+          }
           var marker = new daum.maps.Marker({
             position: new daum.maps.LatLng(scope.position.latitude, scope.position.longitude),
             image: (scope.icon) ? new daum.maps.MarkerImage(scope.icon.image, new daum.maps.Size(scope.icon.width, scope.icon.height)) : null
