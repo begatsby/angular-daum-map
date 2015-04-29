@@ -39,6 +39,12 @@
             $log.error('angular-daum-maps: could not find a valid center property');
             return;
           }
+
+          if (scope.center.lat && scope.center.lng) {
+            scope.center.latitude = scope.center.lat;
+            scope.center.longitude = scope.center.lng;
+          }
+
           el = angular.element(element).find('div')[1];
           map = new daum.maps.Map(el, {
             center: new daum.maps.LatLng(scope.center.latitude, scope.center.longitude),
@@ -171,6 +177,10 @@
           var label = new daum.maps.AbstractOverlay();
           var content;
           var position = markerCtrl.getMarkerPosition();
+          if (position.lat && position.lng) {
+            position.latitude = position.lat;
+            position.longitude = position.lng;
+          }
           var panel, el;
 
           transcludeFn(scope, function (cloned) {
@@ -241,6 +251,10 @@
         replace: true,
         template: '<span class="angular-daum-map-marker" ng-transclude></span>',
         link: function (scope, element, attrs, mapCtrl) {
+          if (scope.position.lat && scope.position.lng) {
+            scope.position.latitude = scope.position.lat;
+            scope.position.longitude = scope.position.lng;
+          }
           var marker = new daum.maps.Marker({
             position: new daum.maps.LatLng(scope.position.latitude, scope.position.longitude),
             image: (scope.icon) ? new daum.maps.MarkerImage(scope.icon.image, new daum.maps.Size(scope.icon.width, scope.icon.height)) : null
@@ -318,6 +332,10 @@
         link: function (scope, element, attrs, mapCtrl) {
           var path = [];
           angular.forEach(scope.path, function (position) {
+            if (position.lat && position.lng) {
+              position.latitude = position.lat;
+              position.longitude = position.lng;
+            }
             path.push(new daum.maps.LatLng(position.latitude, position.longitude));
           });
           var polyline = new daum.maps.Polyline({
