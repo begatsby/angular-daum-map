@@ -354,6 +354,17 @@
             scope.map = map;
           });
 
+          if (angular.isDefined(scope.events) && scope.events !== null && angular.isArray(scope.events)) {
+            angular.forEach(scope.events, function (event) {
+              if (angular.isFunction(event.handler)) {
+                var data = { scope: scope, element: element, attrs: attrs };
+                daum.maps.event.addListener(polyline, event.name, function () {
+                  return event.handler.apply(scope, [data, event.name, arguments]);
+                });
+              }
+            });
+          }
+
           scope.$on('$destroy', function () {
             polyline.setMap(null);
           });
