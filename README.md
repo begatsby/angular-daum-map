@@ -39,3 +39,9 @@ You also have to style the height of the following div:
   
     <div class="angular-daum-map-container"></div>
 
+## Contribution
+
+1. Edit tag version in package.json and bower.json
+2. gulp build
+3. Create a pull request 
+4. Release with a new version tag
