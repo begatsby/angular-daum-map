@@ -322,7 +322,8 @@
           strokeColor: '=',
           strokeOpacity: '=',
           fillColor: '=',
-          fillOpacity: '='
+          fillOpacity: '=',
+          events: '='
         },
         restrict: 'E',
         require: '^daumMap',
